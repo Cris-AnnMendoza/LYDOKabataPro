@@ -167,7 +167,7 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:grid;grid-template-
 
 <!-- RIGHT -->
 <div class="right">
-  <a href="http://localhost/lydo-system/index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
 
   <div class="form-box">
     <div class="form-icon"><i class="fas fa-sign-in-alt"></i></div>
@@ -213,7 +213,7 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:grid;grid-template-
 
     <div class="divider-or">or</div>
     <p class="register-link">
-      New youth member? <a href="http://localhost/lydo-system/index.html#get-started">Register here</a>
+      New youth member? <a href="index.html#get-started">Register here</a>
     </p>
   </div>
 </div>
