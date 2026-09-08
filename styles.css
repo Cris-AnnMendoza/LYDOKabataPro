@@ -430,22 +430,45 @@ img { max-width: 100%; }
 @media (max-width: 768px) {
   .nav-links, .nav-auth { display: none; }
   .hamburger { display: flex; }
-  .section { padding: 72px 0; }
+  .section { padding: 56px 0; }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .hero-stats { gap: 20px; padding: 16px 24px; }
+  .hero-stats { gap: 12px; padding: 14px 16px; flex-wrap: wrap; justify-content: center; }
   .stat-divider { display: none; }
+  .stat { min-width: 80px; text-align: center; }
   .hide-mobile { display: none; }
-  .event-card { flex-direction: column; align-items: flex-start; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .event-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+  .hero-content { padding: 80px 20px 60px; }
+  .section-header { padding: 0 16px; }
+  .programs-grid, .about-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 16px; }
 }
 
 @media (max-width: 480px) {
-  .hero-cta { flex-direction: column; align-items: center; }
-  .cta-buttons { flex-direction: column; align-items: center; }
-  .footer-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
+  .cta-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
+  .cta-buttons .btn, .hero-cta .btn { width: 100%; justify-content: center; }
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
   .about-grid, .programs-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .stat { flex: 1 1 40%; }
+  .stat-num { font-size: 1.4rem; }
+  .section { padding: 40px 0; }
+  .hero-content { padding: 70px 16px 50px; }
+  .container { padding: 0 14px; }
+  /* Prevent text overflow */
+  h1, h2, h3 { word-break: break-word; }
+  /* Full-width images */
+  img { max-width: 100%; }
+}
+
+@media (max-width: 360px) {
+  .hero-stats { flex-direction: column; align-items: center; }
+  .stat { width: 100%; }
+  .container { padding: 0 12px; }
+  .hero-content { padding: 60px 12px 40px; }
 }
 
 /* ===== AUTH CARDS SECTION ===== */
