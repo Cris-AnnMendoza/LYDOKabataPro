@@ -433,3 +433,17 @@ document.getElementById('acceptPrivacy').addEventListener('click', () => {
 privacyModal.addEventListener('click', (e) => {
   if (e.target === privacyModal) privacyModal.classList.remove('open');
 });
+
+// ===== LIVE STATS FROM DATABASE =====
+fetch('api/stats.php')
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('stat-youth').textContent    = d.youth.toLocaleString() + '+';
+    document.getElementById('stat-programs').textContent = d.programs + '+';
+    document.getElementById('stat-events').textContent   = d.events + '+';
+  })
+  .catch(() => {
+    document.getElementById('stat-youth').textContent    = '5,000+';
+    document.getElementById('stat-programs').textContent = '30+';
+    document.getElementById('stat-events').textContent   = '50+';
+  });

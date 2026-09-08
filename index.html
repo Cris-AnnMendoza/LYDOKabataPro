@@ -28,7 +28,7 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-auth">
-        <a href="login.php" class="btn btn-outline">Login</a>
+        <a href="#login" class="btn btn-outline">Login</a>
         <a href="#register" class="btn btn-primary">Register</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -47,7 +47,7 @@
       <li><a href="#contact" class="mobile-link">Contact</a></li>
     </ul>
     <div class="mobile-auth">
-      <a href="login.php" class="btn btn-outline">Login</a>
+      <a href="#login" class="btn btn-outline">Login</a>
       <a href="#register" class="btn btn-primary">Register</a>
     </div>
   </div>
@@ -83,17 +83,17 @@
       </div>
       <div class="hero-stats animate-fade-up delay-4">
         <div class="stat">
-          <span class="stat-num">5,000+</span>
+          <span class="stat-num" id="stat-youth">...</span>
           <span class="stat-label">Registered Youth</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-num">30+</span>
+          <span class="stat-num" id="stat-programs">...</span>
           <span class="stat-label">Active Programs</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-num">50+</span>
+          <span class="stat-num" id="stat-events">...</span>
           <span class="stat-label">Events Held</span>
         </div>
       </div>
@@ -682,7 +682,7 @@
               <div class="form-group">
                 <label for="r_org_name">Organization Name</label>
                 <select id="r_org_name" onchange="handleOrgSelect(this)">
-                  <option value="">— Not a member of any org —</option>
+                  <option value="">ï¿½ Not a member of any org ï¿½</option>
                   <option value="__loading__" disabled>Loading organizations...</option>
                   <option value="__custom__">+ Type a different name</option>
                 </select>
