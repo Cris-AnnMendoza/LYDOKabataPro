@@ -1,0 +1,18 @@
+# Environment files with secrets
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary push scripts with tokens
+push.bat
+pull_then_push.bat
+force_push.bat
+complete_push.bat
+simple_push.bat

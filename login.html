@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – LYD Sta. Cruz, Laguna</title>
+  <link rel="stylesheet" href="login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="login-wrapper">
+
+    <!-- LEFT PANEL -->
+    <div class="login-left">
+      <div class="left-overlay"></div>
+      <div class="left-shapes">
+        <div class="ls ls-1"></div>
+        <div class="ls ls-2"></div>
+        <div class="ls ls-3"></div>
+      </div>
+      <div class="left-content">
+        <!-- LOGO -->
+        <div class="logo-circle">
+<<<<<<< HEAD
+          <img src="/LYDO/lydo-logo.png" alt="LYDO" style="width:70%;height:70%;object-fit:contain"/>
+=======
+          <i class="fas fa-seedling"></i>
+>>>>>>> f579e306e8d60a77056a93cfb7823ed4f2e46f75
+        </div>
+        <h1 class="brand-name">LYDO</h1>
+        <p class="brand-full">Local Youth Development Office</p>
+        <div class="brand-divider"></div>
+        <p class="brand-location">
+          <i class="fas fa-map-marker-alt"></i> Sta. Cruz, Laguna
+        </p>
+        <p class="brand-tagline">
+          "Empowering the Youth of Sta. Cruz Laguna"
+        </p>
+        <div class="left-stats">
+          <div class="ls-stat">
+            <span class="ls-num">5,000+</span>
+            <span class="ls-label">Youth Members</span>
+          </div>
+          <div class="ls-stat">
+            <span class="ls-num">30+</span>
+            <span class="ls-label">Programs</span>
+          </div>
+          <div class="ls-stat">
+            <span class="ls-num">50+</span>
+            <span class="ls-label">Events</span>
+          </div>
+        </div>
+      </div>
+      <div class="left-footer">
+        <p>© 2026 Municipal Government of Sta. Cruz, Laguna</p>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="login-right">
+      <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+
+      <div class="login-form-wrap">
+        <div class="form-header">
+          <div class="form-icon"><i class="fas fa-sign-in-alt"></i></div>
+          <h2>Welcome Back!</h2>
+          <p>Login to access your youth dashboard, programs, and events.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" placeholder="juan@email.com" required autocomplete="email" />
+            </div>
+            <span class="field-error" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password" />
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="passwordError"></span>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" />
+              <span class="checkmark"></span>
+              Remember Me
+            </label>
+            <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn-login" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login Here</span>
+          </button>
+
+          <div class="divider"><span>or</span></div>
+
+          <div class="register-prompt">
+            Don't have an account?
+            <a href="#" id="goRegister">Register here</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="fp-overlay" id="fpOverlay">
+    <div class="fp-modal">
+      <button class="fp-close" id="fpClose" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="fp-icon"><i class="fas fa-key"></i></div>
+      <h3>Forgot Password?</h3>
+      <p>Enter your registered email and we'll send you a reset link.</p>
+      <form id="fpForm">
+        <div class="form-group">
+          <label for="fpEmail">Email Address</label>
+          <div class="input-wrap">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="fpEmail" placeholder="juan@email.com" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-login">
+          <i class="fas fa-paper-plane"></i>
+          <span>Send Reset Link</span>
+        </button>
+      </form>
+      <a href="#" class="fp-back" id="fpBack"><i class="fas fa-arrow-left"></i> Back to Login</a>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

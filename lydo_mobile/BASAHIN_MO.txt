@@ -1,0 +1,86 @@
+========================================
+LYDO MOBILE - SIMPLE FIX v2
+========================================
+
+PROBLEMA:
+May build error pa rin dahil sa Kotlin DSL (.gradle.kts)
+
+SOLUSYON:
+Pinalitan ko na lahat to Groovy (.gradle) - MAS SIMPLE!
+
+========================================
+GAWIN MO (IMPORTANT!):
+========================================
+
+STEP 1: I-close LAHAT
+----------------------
+❌ Close lahat ng terminal
+❌ Close VS Code COMPLETELY
+❌ Close Android Studio (kung bukas)
+
+STEP 2: Run yung script
+------------------------
+Double-click lang:
+
+   GAWIN_MO_TO.bat
+
+Tapos hintayin lang. Automatic na lahat!
+Mag-wait ng 2-3 minutes.
+
+========================================
+ANO YUNG BINAGO KO:
+========================================
+
+✅ build.gradle.kts → build.gradle (Groovy)
+✅ settings.gradle.kts → settings.gradle (Groovy)  
+✅ Simplified lahat ng configuration
+✅ Removed Kotlin DSL complexity
+✅ Direct values, walang dependencies
+
+Groovy is mas stable at mas simple kaysa Kotlin DSL!
+
+========================================
+KUNG DI PA RIN GUMANA:
+========================================
+
+Option A: Nuclear Option
+-------------------------
+1. Delete manually LAHAT ng build folders:
+   - lydo_mobile\build
+   - lydo_mobile\.dart_tool
+   - lydo_mobile\android\build
+   - lydo_mobile\android\app\build
+   - lydo_mobile\android\.gradle
+
+2. Delete din to:
+   C:\Users\User\.gradle\caches
+
+3. RESTART PC
+
+4. After restart, run: GAWIN_MO_TO.bat
+
+Option B: Check Flutter
+------------------------
+flutter doctor -v
+
+Tignan kung may Mali. Dapat:
+✓ Flutter
+✓ Android toolchain  
+✓ Android SDK
+✓ Java 17
+
+========================================
+ANO NA YUNG NA-FIX:
+========================================
+
+✅ Java 17 - OK na
+✅ Gradle config - OK na  
+✅ NDK requirement - Tinanggal ko na
+✅ Kotlin DSL - Pinalitan ko ng Groovy
+✅ All configs - Sinimple ko lahat
+
+========================================
+
+TRY MO NA: GAWIN_MO_TO.bat
+
+Yun lang! 🚀

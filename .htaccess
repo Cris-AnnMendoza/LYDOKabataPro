@@ -1,0 +1,16 @@
+DirectoryIndex index.html index.php
+
+Options -Indexes
+
+# Handle React-style client-side routing (if needed)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /LYDO/
+
+    # Don't rewrite real files or directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect bare domain to index.html
+    RewriteRule ^$ index.html [L]
+</IfModule>

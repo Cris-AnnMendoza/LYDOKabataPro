@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camera Test - LYDO</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f5f5f5;
+}
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #1565c0;
+    margin-bottom: 10px;
+}
+.status {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+.status.checking {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+.status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+.status.error {
+    background: #ffebee;
+    color: #c62828;
+}
+video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    border: 2px solid #1565c0;
+    display: none;
+    margin: 20px 0;
+}
+button {
+    background: #1565c0;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+button:hover {
+    background: #0d47a1;
+}
+.info {
+    background: #fff8e1;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.detail {
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📹 Camera Access Test</h1>
+    <p>This page tests if your browser can access the camera for QR scanning.</p>
+    
+    <div class="info">
+        <strong>⚠️ Important:</strong> Camera access requires HTTPS in most browsers. 
+        If you're on HTTP (http://), the camera won't work.
+    </div>
+    
+    <div id="status" class="status checking">Checking browser support...</div>
+    
+    <div id="details" class="detail" style="display:none"></div>
+    
+    <video id="video" autoplay playsinline></video>
+    
+    <div style="text-align: center;">
+        <button id="testBtn" onclick="testCamera()">Test Camera</button>
+        <button onclick="stopCamera()">Stop Camera</button>
+        <button onclick="location.reload()">Refresh</button>
+    </div>
+    
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+        <h3>Troubleshooting:</h3>
+        <ul style="line-height: 1.8;">
+            <li><strong>Using HTTP?</strong> Switch to HTTPS (see ENABLE_HTTPS_GUIDE.md)</li>
+            <li><strong>Permission denied?</strong> Check browser settings → Camera permissions</li>
+            <li><strong>No camera found?</strong> Ensure camera is connected and not used by another app</li>
+            <li><strong>Still not working?</strong> Try a different browser (Chrome recommended)</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+let stream = null;
+
+function updateStatus(message, type) {
+    const statusDiv = document.getElementById('status');
+    statusDiv.textContent = message;
+    statusDiv.className = 'status ' + type;
+}
+
+function showDetails(info) {
+    const detailsDiv = document.getElementById('details');
+    detailsDiv.style.display = 'block';
+    detailsDiv.innerHTML = '<strong>Technical Details:</strong><br>' + info;
+}
+
+// Check on page load
+window.onload = function() {
+    const protocol = window.location.protocol;
+    const isHttps = protocol === 'https:';
+    
+    let details = 'Protocol: ' + protocol + '<br>';
+    details += 'HTTPS: ' + (isHttps ? '✓ Yes' : '✗ No') + '<br>';
+    details += 'Browser: ' + navigator.userAgent.match(/(?:Chrome|Firefox|Safari|Edge)\/[\d.]+/)?.[0] || 'Unknown' + '<br>';
+    
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        details += 'getUserMedia: ✓ Supported<br>';
+        
+        if (isHttps) {
+            updateStatus('✓ Ready to test! Click "Test Camera" button.', 'success');
+        } else {
+            updateStatus('⚠️ HTTP detected - Camera may not work. Use HTTPS instead.', 'error');
+        }
+    } else {
+        details += 'getUserMedia: ✗ Not supported<br>';
+        updateStatus('✗ Browser does not support camera access', 'error');
+    }
+    
+    showDetails(details);
+};
+
+async function testCamera() {
+    updateStatus('📹 Requesting camera access...', 'checking');
+    
+    try {
+        // Request camera access
+        stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { 
+                facingMode: 'environment' 
+            } 
+        });
+        
+        // Success!
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+        video.style.display = 'block';
+        
+        updateStatus('✓ SUCCESS! Camera is working!', 'success');
+        
+        // Get camera info
+        const tracks = stream.getVideoTracks();
+        if (tracks.length > 0) {
+            const settings = tracks[0].getSettings();
+            let info = 'Camera Label: ' + (tracks[0].label || 'Unknown') + '<br>';
+            info += 'Resolution: ' + (settings.width || '?') + 'x' + (settings.height || '?') + '<br>';
+            info += 'Frame Rate: ' + (settings.frameRate || '?') + ' fps';
+            showDetails(info);
+        }
+        
+    } catch (err) {
+        console.error('Camera error:', err);
+        
+        let errorMsg = 'Camera access failed: ';
+        
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+            errorMsg += 'Permission denied. Please allow camera access in your browser.';
+        } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+            errorMsg += 'No camera found on your device.';
+        } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+            errorMsg += 'Camera is already in use by another application.';
+        } else if (err.name === 'OverconstrainedError') {
+            errorMsg += 'Camera constraints could not be satisfied.';
+        } else if (err.name === 'SecurityError') {
+            errorMsg += 'Camera blocked due to security policy. Are you using HTTPS?';
+        } else {
+            errorMsg += err.message || err.name || 'Unknown error';
+        }
+        
+        updateStatus('✗ ' + errorMsg, 'error');
+        showDetails('Error Name: ' + err.name + '<br>Error Message: ' + err.message);
+    }
+}
+
+function stopCamera() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        document.getElementById('video').style.display = 'none';
+        updateStatus('Camera stopped. Click "Test Camera" to try again.', 'checking');
+    }
+}
+</script>
+
+</body>
+</html>

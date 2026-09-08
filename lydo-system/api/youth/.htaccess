@@ -1,0 +1,19 @@
+# Enable CORS for API
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Authorization, Content-Type"
+
+# Rewrite engine
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /LYDO/lydo-system/api/youth/
+
+# Handle OPTIONS preflight
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Redirect to PHP files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ $1.php [L,QSA]
+</IfModule>
