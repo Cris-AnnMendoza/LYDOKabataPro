@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($noRepOrgs as $userId) {
             $attendance[(int)$userId] = 'absent';
             // Also apply no-representative demerit
-            awardPoints($pdo, (int)$userId, 'no_representative', $admin['id'], $eventId);
+            awardOrgPoints($pdo, (int)$userId, 'no_representative', $admin['id'], $eventId);
         }
 
         $result = processEventAttendance($pdo, $eventId, $attendance, $admin['id']);

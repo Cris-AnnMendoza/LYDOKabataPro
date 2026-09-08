@@ -48,7 +48,7 @@ $initials = strtoupper(substr($admin['full_name'],0,1) . (strpos($admin['full_na
 
     <?php if (hasPermission('view_reports')): ?>
     <div class="nav-label">Reports</div>
-    <?php navItem('reports.php','chart-bar','Reports','view_reports') ?>
+    <?php navItem('#reports','chart-bar','Reports','view_reports') ?>
     <?php endif; ?>
 
     <?php if (hasPermission('manage_admins')): ?>
