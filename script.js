@@ -167,7 +167,7 @@ document.querySelectorAll('.toggle-pw').forEach(btn => {
 
 // ===== LOAD ORGANIZATIONS INTO REGISTRATION DROPDOWN =====
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('http://localhost/lydo-system/backend/api/organizations.php')
+  fetch('backend/api/organizations.php')
     .then(r => r.json())
     .then(d => {
       const sel = document.getElementById('r_org_name');
@@ -346,7 +346,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   });
 
   try {
-    const res  = await fetch('http://localhost/lydo-system/register.php', {
+    const res  = await fetch('register.php', {
       method: 'POST', body: payload
     });
     const json = await res.json();
