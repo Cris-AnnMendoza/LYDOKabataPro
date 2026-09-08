@@ -1,0 +1,37 @@
+<?php
+/**
+ * GET /api/get_organizations.php
+ * Returns list of active organizations for registration dropdown
+ */
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+
+require_once __DIR__ . '/../shared/config.php';
+
+try {
+    $pdo = db();
+    
+    // Get all active organizations, ordered by name
+    $stmt = $pdo->query('
+        SELECT id, name, category 
+        FROM organizations 
+        WHERE is_active = 1 
+        ORDER BY name ASC
+    ');
+    
+    $organizations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo json_encode([
+        'success' => true,
+        'organizations' => $organizations
+    ]);
+    
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Failed to load organizations',
+        'error' => $e->getMessage()
+    ]);
+}
