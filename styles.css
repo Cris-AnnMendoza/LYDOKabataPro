@@ -724,6 +724,8 @@ img { max-width: 100%; }
 .modal-body textarea    { min-height: 60px; resize: vertical; }
 
 /* ===== DATA PRIVACY MODAL ===== */
+#privacyModal .modal { display: flex; flex-direction: column; max-height: 90vh; }
+#privacyModal .modal-body { overflow-y: auto; max-height: 60vh; }
 .privacy-section { margin-bottom: 20px; }
 .privacy-section h4 {
   display: flex; align-items: center; gap: 8px;
