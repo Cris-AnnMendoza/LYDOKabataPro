@@ -48,23 +48,36 @@ $userOrgPoints = $orgStmt->fetchAll();
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="youth.css"/>
 <style>
+/* Stat cards — auto-fit: always fits nicely regardless of count */
+.dash-stat-grid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(100px,1fr))!important;
+  gap:10px!important;
+}
+.dash-stat-grid>div{
+  padding:14px 12px!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  text-align:center!important;
+  gap:6px!important;
+  justify-content:center!important;
+}
+.dash-stat-grid .stat-icon{flex-shrink:0}
 @media(max-width:600px){
-  .dash-stat-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
-  .dash-stat-grid>div{padding:12px 10px!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:6px!important}
+  .dash-stat-grid{grid-template-columns:repeat(auto-fit,minmax(85px,1fr))!important;gap:8px!important}
+  .dash-stat-grid>div{padding:12px 8px!important}
   .dash-stat-grid .stat-icon{width:34px!important;height:34px!important;font-size:.85rem!important}
-  .dash-stat-grid .stat-num{font-size:1.2rem!important}
+  .dash-stat-grid .stat-num{font-size:1.1rem!important}
   .dash-stat-grid .stat-lbl{font-size:.65rem!important}
   .dash-main-grid{grid-template-columns:1fr!important}
   .dash-quick-grid{grid-template-columns:1fr 1fr!important}
   .dash-welcome{flex-direction:column!important;gap:8px!important;padding:18px 20px!important}
   .dash-welcome h2{font-size:1.15rem!important}
   .dash-welcome p{font-size:.82rem!important}
-  .dash-welcome-badge{align-self:flex-start!important;padding:8px 14px!important}
 }
 @media(max-width:380px){
-  .dash-stat-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}
-  .dash-stat-grid>div{padding:10px 6px!important}
-  .dash-stat-grid .stat-num{font-size:1rem!important}
+  .dash-stat-grid{grid-template-columns:repeat(auto-fit,minmax(75px,1fr))!important;gap:6px!important}
+  .dash-stat-grid .stat-num{font-size:.95rem!important}
   .dash-stat-grid .stat-lbl{font-size:.6rem!important}
   .dash-quick-grid{grid-template-columns:1fr!important}
 }
