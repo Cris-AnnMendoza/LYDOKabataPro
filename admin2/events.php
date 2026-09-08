@@ -194,7 +194,10 @@ $eventTypeLabels = [
           <td><?=htmlspecialchars($ev['org_name']?:'—')?></td>
           <td><strong>+<?=$ev['merit_points']?></strong></td>
           <td><?=$ev['recorded']?> attendees</td>
-          <td><a href="?tab=attendance&event_id=<?=$ev['id']?>" class="btn-primary" style="padding:6px 12px;font-size:.8rem"><i class="fas fa-clipboard-check"></i> Record</a></td>
+          <td style="display:flex;gap:6px">
+            <a href="?tab=attendance&event_id=<?=$ev['id']?>" class="btn-primary" style="padding:6px 12px;font-size:.8rem"><i class="fas fa-clipboard-check"></i> Record</a>
+            <a href="event_qr.php?id=<?=$ev['id']?>" class="btn-secondary" style="padding:6px 12px;font-size:.8rem"><i class="fas fa-qrcode"></i> QR</a>
+          </td>
         </tr>
       <?php endforeach; endif; ?>
       </tbody>
