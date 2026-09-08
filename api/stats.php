@@ -5,17 +5,21 @@ header('Content-Type: application/json');
 try {
     $pdo = db();
 
-    $youth = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
-    $programs = $pdo->query("SELECT COUNT(*) FROM volunteer_programs WHERE is_active = 1")->fetchColumn();
-    $events = $pdo->query("SELECT COUNT(*) FROM events")->fetchColumn();
-    $accredited = $pdo->query("SELECT COUNT(*) FROM organizations WHERE accreditation_status = 'accredited'")->fetchColumn();
+    $youth = (int)$pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 
-    echo json_encode([
-        'youth' => (int)$youth,
-        'programs' => (int)$programs,
-        'events' => (int)$events,
-        'accredited' => (int)$accredited,
-    ]);
+    try {
+        $programs = (int)$pdo->query("SELECT COUNT(*) FROM volunteer_programs")->fetchColumn();
+    } catch (Exception $e) { $programs = 0; }
+
+    try {
+        $events = (int)$pdo->query("SELECT COUNT(*) FROM events")->fetchColumn();
+    } catch (Exception $e) { $events = 0; }
+
+    try {
+        $accredited = (int)$pdo->query("SELECT COUNT(*) FROM organizations WHERE accreditation_status = 'accredited'")->fetchColumn();
+    } catch (Exception $e) { $accredited = 0; }
+
+    echo json_encode(compact('youth', 'programs', 'events', 'accredited'));
 } catch (Exception $e) {
-    echo json_encode(['youth' => 0, 'programs' => 0, 'events' => 0, 'accredited' => 0]);
+    echo json_encode(['error' => $e->getMessage(), 'youth' => 0, 'programs' => 0, 'events' => 0, 'accredited' => 0]);
 }
