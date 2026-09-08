@@ -49,14 +49,24 @@ $userOrgPoints = $orgStmt->fetchAll();
 <link rel="stylesheet" href="youth.css"/>
 <style>
 @media(max-width:600px){
-  .dash-stat-grid{grid-template-columns:1fr!important}
+  .dash-stat-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+  .dash-stat-grid>div{padding:12px 10px!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:6px!important}
+  .dash-stat-grid .stat-icon{width:34px!important;height:34px!important;font-size:.85rem!important}
+  .dash-stat-grid .stat-num{font-size:1.2rem!important}
+  .dash-stat-grid .stat-lbl{font-size:.65rem!important}
   .dash-main-grid{grid-template-columns:1fr!important}
-  .dash-quick-grid{grid-template-columns:1fr!important}
-  .dash-welcome{flex-direction:column!important;gap:10px!important}
-  .dash-welcome-badge{width:100%!important;text-align:left!important;padding:10px 14px!important}
+  .dash-quick-grid{grid-template-columns:1fr 1fr!important}
+  .dash-welcome{flex-direction:column!important;gap:8px!important;padding:18px 20px!important}
+  .dash-welcome h2{font-size:1.15rem!important}
+  .dash-welcome p{font-size:.82rem!important}
+  .dash-welcome-badge{align-self:flex-start!important;padding:8px 14px!important}
 }
-@media(max-width:400px){
-  .dash-stat-grid{grid-template-columns:1fr!important}
+@media(max-width:380px){
+  .dash-stat-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}
+  .dash-stat-grid>div{padding:10px 6px!important}
+  .dash-stat-grid .stat-num{font-size:1rem!important}
+  .dash-stat-grid .stat-lbl{font-size:.6rem!important}
+  .dash-quick-grid{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -83,16 +93,16 @@ $userOrgPoints = $orgStmt->fetchAll();
   <!-- STAT CARDS -->
   <div class="dash-stat-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px">
     <div style="background:#fff;border-radius:12px;border:1px solid var(--gray-200);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)">
-      <div style="width:44px;height:44px;border-radius:11px;background:var(--blue-pale);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-hands-helping"></i></div>
-      <div><span style="display:block;font-size:1.6rem;font-weight:800;color:var(--gray-800);line-height:1"><?= $pendingReqs ?></span><span style="font-size:.75rem;color:var(--gray-600);font-weight:500">Active Requests</span></div>
+      <div class="stat-icon" style="width:44px;height:44px;border-radius:11px;background:var(--blue-pale);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-hands-helping"></i></div>
+      <div><span class="stat-num" style="display:block;font-size:1.6rem;font-weight:800;color:var(--gray-800);line-height:1"><?= $pendingReqs ?></span><span class="stat-lbl" style="font-size:.75rem;color:var(--gray-600);font-weight:500">Active Requests</span></div>
     </div>
     <div style="background:#fff;border-radius:12px;border:1px solid var(--gray-200);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)">
-      <div style="width:44px;height:44px;border-radius:11px;background:var(--green-pale);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-map-marker-alt"></i></div>
-      <div><span style="display:block;font-size:1.1rem;font-weight:800;color:var(--gray-800);line-height:1.2"><?= htmlspecialchars($user['barangay'] ?: '—') ?></span><span style="font-size:.75rem;color:var(--gray-600);font-weight:500">Barangay</span></div>
+      <div class="stat-icon" style="width:44px;height:44px;border-radius:11px;background:var(--green-pale);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-map-marker-alt"></i></div>
+      <div><span class="stat-num" style="display:block;font-size:1.1rem;font-weight:800;color:var(--gray-800);line-height:1.2"><?= htmlspecialchars($user['barangay'] ?: '—') ?></span><span class="stat-lbl" style="font-size:.75rem;color:var(--gray-600);font-weight:500">Barangay</span></div>
     </div>
     <div style="background:#fff;border-radius:12px;border:1px solid var(--gray-200);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)">
-      <div style="width:44px;height:44px;border-radius:11px;background:#fff8e1;color:#f57f17;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-bell"></i></div>
-      <div><span style="display:block;font-size:1.6rem;font-weight:800;color:var(--gray-800);line-height:1"><?= $notifCount ?></span><span style="font-size:.75rem;color:var(--gray-600);font-weight:500">Notifications</span></div>
+      <div class="stat-icon" style="width:44px;height:44px;border-radius:11px;background:#fff8e1;color:#f57f17;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-bell"></i></div>
+      <div><span class="stat-num" style="display:block;font-size:1.6rem;font-weight:800;color:var(--gray-800);line-height:1"><?= $notifCount ?></span><span class="stat-lbl" style="font-size:.75rem;color:var(--gray-600);font-weight:500">Notifications</span></div>
     </div>
   </div>
 
