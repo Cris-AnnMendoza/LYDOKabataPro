@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply font-sans text-gray-800 bg-gray-50; }
+  * { @apply box-border; }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50
+           text-sm text-gray-800 outline-none transition-all duration-200
+           focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white;
+  }
+  .input-field.error {
+    @apply border-red-400 focus:ring-red-100;
+  }
+  .btn-primary {
+    @apply w-full py-3 px-6 bg-gradient-to-r from-primary-dark to-primary
+           text-white font-bold rounded-xl flex items-center justify-center gap-2
+           transition-all duration-200 hover:-translate-y-0.5
+           hover:shadow-lg hover:shadow-primary/30 disabled:opacity-60
+           disabled:cursor-not-allowed disabled:translate-y-0;
+  }
+  .btn-green {
+    @apply w-full py-3 px-6 text-white font-bold rounded-xl flex items-center justify-center gap-2
+           transition-all duration-200 hover:-translate-y-0.5
+           hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed;
+    background: linear-gradient(to right, #2e7d32, #43a047);
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-gray-700 mb-1.5;
+  }
+  .step-badge {
+    @apply inline-flex items-center gap-1.5 bg-primary-pale text-primary
+           text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide;
+  }
+}
