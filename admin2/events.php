@@ -100,14 +100,14 @@ if ($tab === 'attendance' && isset($_GET['event_id'])) {
 
     $attendanceList = $pdo->prepare(
         'SELECT o.id, o.name, o.category, o.barangay,
-                COALESCE(a.status,"not_recorded") as att_status,
+                COALESCE(MAX(a.status),"not_recorded") as att_status,
                 COALESCE(SUM(CASE WHEN m.type="merit" THEN m.points ELSE 0 END),0) as merit,
                 COALESCE(SUM(CASE WHEN m.type="demerit" THEN ABS(m.points) ELSE 0 END),0) as demerit
          FROM organizations o
          LEFT JOIN event_attendance a ON a.event_id=? AND a.organization_id=o.id
          LEFT JOIN org_merit_logs m ON m.organization_id=o.id
          WHERE o.is_active=1
-         GROUP BY o.id ORDER BY o.name'
+         GROUP BY o.id, o.name, o.category, o.barangay ORDER BY o.name'
     );
     $attendanceList->execute([$eid]);
     $attendanceList = $attendanceList->fetchAll();
