@@ -47,6 +47,18 @@ $userOrgPoints = $orgStmt->fetchAll();
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="youth.css"/>
+<style>
+@media(max-width:600px){
+  .dash-stat-grid{grid-template-columns:1fr!important}
+  .dash-main-grid{grid-template-columns:1fr!important}
+  .dash-quick-grid{grid-template-columns:1fr!important}
+  .dash-welcome{flex-direction:column!important;gap:10px!important}
+  .dash-welcome-badge{width:100%!important;text-align:left!important;padding:10px 14px!important}
+}
+@media(max-width:400px){
+  .dash-stat-grid{grid-template-columns:1fr!important}
+}
+</style>
 </head>
 <body>
 
@@ -57,7 +69,7 @@ $userOrgPoints = $orgStmt->fetchAll();
 <main class="y-content">
 
   <!-- WELCOME BANNER -->
-  <div style="background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:24px 28px;color:#fff;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+  <div class="dash-welcome" style="background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:24px 28px;color:#fff;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
     <div>
       <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:5px">Welcome back, <?= htmlspecialchars($user['first_name']) ?>! 👋</h2>
       <p style="font-size:.88rem;opacity:.85">You're logged in to the LYDO Youth Portal of Sta. Cruz, Laguna.</p>
@@ -69,7 +81,7 @@ $userOrgPoints = $orgStmt->fetchAll();
   </div>
 
   <!-- STAT CARDS -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px">
+  <div class="dash-stat-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px">
     <div style="background:#fff;border-radius:12px;border:1px solid var(--gray-200);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)">
       <div style="width:44px;height:44px;border-radius:11px;background:var(--blue-pale);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0"><i class="fas fa-hands-helping"></i></div>
       <div><span style="display:block;font-size:1.6rem;font-weight:800;color:var(--gray-800);line-height:1"><?= $pendingReqs ?></span><span style="font-size:.75rem;color:var(--gray-600);font-weight:500">Active Requests</span></div>
@@ -84,7 +96,7 @@ $userOrgPoints = $orgStmt->fetchAll();
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+  <div class="dash-main-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
 
     <!-- PROFILE SUMMARY -->
     <div style="background:#fff;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);overflow:hidden">
@@ -118,7 +130,7 @@ $userOrgPoints = $orgStmt->fetchAll();
           <i class="fas fa-th" style="color:var(--blue);font-size:.85rem"></i>
           <span style="font-size:.9rem;font-weight:700">Quick Links</span>
         </div>
-        <div style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="dash-quick-grid" style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <?php
           $links = [
             ['assistance.php',   'hands-helping', 'Assistance Request', '#e3f2fd','#1565c0'],
