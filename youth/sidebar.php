@@ -45,6 +45,7 @@ function youthNav(string $file, string $icon, string $label, int $badge = 0): vo
   <nav class="y-nav">
     <div class="y-nav-label">Main</div>
     <?php youthNav('dashboard.php',  'tachometer-alt', 'Dashboard') ?>
+    <?php youthNav('events.php',     'calendar-check', 'Events & Check-in') ?>
     <?php youthNav('assistance.php', 'hands-helping',  'Assistance Request') ?>
     <?php youthNav('accreditation.php','award',        'Accreditation') ?>
     <?php youthNav('volunteer.php',  'user-check',     'Volunteer Program') ?>
