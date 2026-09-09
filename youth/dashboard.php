@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../shared/config.php';
 if (empty($_SESSION['user_id'])) { header('Location: ../login.php'); exit; }
 
